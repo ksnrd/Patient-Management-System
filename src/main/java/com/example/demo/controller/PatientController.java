@@ -24,26 +24,31 @@ public class PatientController {
         this.patientRepository = patientRepository;
     }
 
+    //End point to fetch all patients, use it as "http://localhost:8080/patients"
     @GetMapping
     public List<Patient> getAllPatients() {
         return patientService.getAllPatients();
     }
 
+    //End point to fetch patients by ID
     @GetMapping("/{id}")
     public Optional<Patient> getPatientById(@PathVariable Long id) {
         return patientService.getPatientById(id);
     }
 
+    //End point to Add Patient Details
     @PostMapping
     public Patient addPatient(@RequestBody Patient patient) {
         return patientService.addPatient(patient);
     }
 
+    //End point to delete a Patient
     @DeleteMapping("/{id}")
     public void deletePatient(@PathVariable Long id) {
         patientService.deletePatient(id);
     }
 
+    //End point to Edit Patient Details
     @PutMapping("/patients/{id}")
     public ResponseEntity<Patient> updatePatient(@PathVariable Long id, @RequestBody Patient updatedPatient) {
         System.out.println(11111);
@@ -59,6 +64,7 @@ public class PatientController {
                 }).orElse(ResponseEntity.notFound().build());
     }
 
+    //End point to Search Patients using various params.
     @GetMapping("/search")
     public List<Patient> searchPatients(
             @RequestParam(required = false) String name,
