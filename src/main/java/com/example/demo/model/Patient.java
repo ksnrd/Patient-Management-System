@@ -1,8 +1,11 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
+@Data
 @Entity
 @Table(name = "patientdb")
 public class Patient {

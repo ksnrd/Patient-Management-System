@@ -13,8 +13,8 @@ import java.util.List;
 public interface PatientRepository extends JpaRepository<Patient, Long> {
     @Query("SELECT p FROM Patient p WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', :name, '%'))")
     List<Patient> searchByName(@Param("name") String name);
-    @Query("SELECT p FROM ")
-    List<Patient> findByAge(int age);
+    @Query("SELECT p FROM Patient p WHERE p.age = :age")
+    List<Patient> findByAge(@Param("age") int age);
     List<Patient> findByGenderIgnoreCase(String gender);
     List<Patient> findByPhone(String phone);
 
